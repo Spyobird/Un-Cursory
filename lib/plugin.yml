@@ -1,5 +1,5 @@
 name: Un-Cursory
-version: 3.0
+version: 2.2
 main: bukkit.spyobird.uncursory.UnCursory
 author: spyobird
 description: Un-Curses the chat making it user friendly! :3 (For Compserv|CST Minecraft Server Only)
@@ -9,23 +9,15 @@ permission:
     uc.*:
         description: Allow permissions
         childern:
-            uc.allowCurse: op
-            uc.noGmChange: op
-            uc.noMoneyLost: op
-            uc.noHealthLost: op
-            uc.noFoodLost: op
+            uc.allowCurse: true
+            uc.noMoneyLost: true
+            uc.noHealthLost: true
     uc.allowCurse:
         description: Allows people to curse :(
-        default: false
-    uc.noGmChange:
-        description: Gamemode is not changed in cursing :(
         default: false
     uc.noMoneyLost:
         description: No money lost in cursing :(
         default: false
     uc.noHealthLost:
         description: No health lost in cursing :(
-        default: false
-    uc.noFoodLost:
-        description: No hunger lost in cursing :(
         default: false

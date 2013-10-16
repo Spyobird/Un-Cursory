@@ -76,3 +76,6 @@ msgDmg: Damage given for cursing. xD
 
 # Message when someone curses if takeFood is true
 msgFood: Hunger depleted for cursing. xD
+
+# Message for /uc warn command
+msgWarn: Please stop cursing, you may be banned.

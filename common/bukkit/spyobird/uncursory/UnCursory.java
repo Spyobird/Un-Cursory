@@ -43,7 +43,7 @@ public class UnCursory extends JavaPlugin implements Listener
                             event.getPlayer().sendMessage(ChatColor.BLUE + getConfig().getString("msgMoneyNone"));
                         }
                     }
-                    if (getConfig().getBoolean("takeDmg") == true && !event.getPlayer().hasPermission("uc.noHeartLost"))
+                    if (getConfig().getBoolean("takeDmg") == true && !event.getPlayer().hasPermission("uc.noHealthLost"))
                     {
                         dmg = getConfig().getInt("dmgAmount");
                         event.getPlayer().damage(dmg);

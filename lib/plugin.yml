@@ -5,22 +5,15 @@ author: spyobird
 description: Un-Curses the chat making it user friendly! :3 (For Compserv|CST Minecraft Server Only)
 softdepend: [Vault]
 
-commands:
-    uc warn:
-        usage: /<command> <player> <reason>
-        aliases: [w]
-        description: Allows ops to warn players about cursing
-    
-
 permission:
     uc.*:
         description: Allow permissions
         childern:
-            uc.allowCurse: true
-            uc.noGmChange: true
-            uc.noMoneyLost: true
-            uc.noHealthLost: true
-            uc.noFoodLost: true
+            uc.allowCurse: op
+            uc.noGmChange: op
+            uc.noMoneyLost: op
+            uc.noHealthLost: op
+            uc.noFoodLost: op
     uc.allowCurse:
         description: Allows people to curse :(
         default: false

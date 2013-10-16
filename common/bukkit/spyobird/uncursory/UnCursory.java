@@ -1,6 +1,5 @@
 package bukkit.spyobird.uncursory;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.economy.Economy;
@@ -9,9 +8,6 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -24,7 +20,6 @@ public class UnCursory extends JavaPlugin implements Listener
     public static int dmg;
     public static int food;
     public static float foodRate;
-    private ArrayList<Player> ban = new ArrayList<Player>();
     
     @SuppressWarnings("deprecation")
     @EventHandler
@@ -75,76 +70,6 @@ public class UnCursory extends JavaPlugin implements Listener
                 }
             }
         }
-    }
-    
-    @SuppressWarnings("deprecation")
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
-        if (cmd.getName().equalsIgnoreCase("uc warn"))
-        {
-            if (args.length == 0)
-            {
-                sender.sendMessage(ChatColor.RED + "Please specify a player.");
-                return false;
-            }
-            final Player player = Bukkit.getServer().getPlayer(args[1]);
-            if (player == null)
-            {
-                sender.sendMessage(ChatColor.RED + "Player " + args[1] + " could not be found.");
-                return false;
-            }
-            String msg = "";
-            if (args.length > 1)
-            {
-                for (int i = 1; i < args.length; i++)
-                {
-                    msg += args[i];
-                }
-            }
-            if (args.length == 1)
-            {
-                msg = getConfig().getString("msgWarn");
-            }
-            Object warnLvl = this.getConfig().getInt(player.getName());
-            if (warnLvl == null)
-            {
-                player.sendMessage(ChatColor.RED + msg);
-                this.getConfig().set(player.getName(), 1);
-                this.saveConfig();
-                return true;
-            }
-            int Lvl = Integer.parseInt(warnLvl.toString());
-            if (Lvl == 1)
-            {
-                player.sendMessage(ChatColor.RED + msg);
-                player.damage(0);
-                this.getConfig().set(player.getName(), 2);
-                this.saveConfig();
-                return true;
-            }
-            if (Lvl == 2)
-            {
-                player.kickPlayer(ChatColor.RED + msg);
-                this.getConfig().set(player.getName(), 3);
-                this.saveConfig();
-                return true;
-            }
-            if (Lvl == 3)
-            {
-                ban.add(player);
-                player.kickPlayer(ChatColor.RED + msg);
-                player.setBanned(true);
-                Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable()
-                {
-                    public void run()
-                    {
-                        ban.remove(player);
-                    }
-                }, 600);
-                return true;
-            }
-        }
-        return true;
     }
 
     //Vault Plugin Configuration

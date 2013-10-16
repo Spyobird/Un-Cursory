@@ -7,6 +7,7 @@ import net.milkbowl.vault.economy.EconomyResponse;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -17,6 +18,8 @@ public class UnCursory extends JavaPlugin implements Listener
 {
     public static float money;
     public static int dmg;
+    public static int food;
+    public static float foodRate;
     
     @SuppressWarnings("deprecation")
     @EventHandler
@@ -30,6 +33,10 @@ public class UnCursory extends JavaPlugin implements Listener
                 {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage(ChatColor.GREEN + getConfig().getString("msgCurse"));
+                    if (getConfig().getBoolean("changeGm") == true)
+                    {
+                        event.getPlayer().setGameMode(GameMode.SURVIVAL);
+                    }
                     if (getConfig().getBoolean("moneyUsed") == true && !event.getPlayer().hasPermission("uc.noMoneyLost"))
                     {
                         money = (float) getConfig().getFloatList("moneyCost").get(0);
@@ -48,6 +55,17 @@ public class UnCursory extends JavaPlugin implements Listener
                         dmg = getConfig().getInt("dmgAmount");
                         event.getPlayer().damage(dmg);
                         event.getPlayer().sendMessage(ChatColor.RED + getConfig().getString("msgDmg"));
+                    }
+                    if (getConfig().getBoolean("takeFood") == true && !event.getPlayer().hasPermission("uc.noFoodLost"))
+                    {
+                        food = getConfig().getInt("foodAmount");
+                        event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() - food);
+                        event.getPlayer().sendMessage(ChatColor.RED + getConfig().getString("msgFood"));
+                    }
+                    if (getConfig().getBoolean("addFoodRate") == true && !event.getPlayer().hasPermission("uc.noFoodLost"))
+                    {
+                        foodRate = (float) getConfig().getFloatList("foodRateAmount").get(0);
+                        event.getPlayer().setExhaustion(event.getPlayer().getExhaustion() + foodRate);
                     }
                 }
             }

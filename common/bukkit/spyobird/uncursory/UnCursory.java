@@ -30,7 +30,7 @@ public class UnCursory extends JavaPlugin implements Listener
                 {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage(ChatColor.GREEN + getConfig().getString("msgCurse"));
-                    if (getConfig().getBoolean("moneyUsed") == true)
+                    if (getConfig().getBoolean("moneyUsed") == true && !event.getPlayer().hasPermission("uc.noMoneyLost"))
                     {
                         money = (float) getConfig().getFloatList("moneyCost").get(0);
                         EconomyResponse r = econ.withdrawPlayer(event.getPlayer().getName(), money);
@@ -43,7 +43,7 @@ public class UnCursory extends JavaPlugin implements Listener
                             event.getPlayer().sendMessage(ChatColor.BLUE + getConfig().getString("msgMoneyNone"));
                         }
                     }
-                    if (getConfig().getBoolean("takeDmg") == true)
+                    if (getConfig().getBoolean("takeDmg") == true && !event.getPlayer().hasPermission("uc.noHeartLost"))
                     {
                         dmg = getConfig().getInt("dmgAmount");
                         event.getPlayer().damage(dmg);

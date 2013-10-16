@@ -8,4 +8,10 @@ softdepend: [Vault]
 permission:
     uc.allowCurse:
         description: Allows people to curse :(
-        default: op
+        default: false
+    uc.noMoneyLost:
+        description: No money lost in cursing :(
+        default: false
+    uc.noHealthLost:
+        description: No health lost in cursing :(
+        default: false

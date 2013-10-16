@@ -10,11 +10,15 @@ permission:
         description: Allow permissions
         childern:
             uc.allowCurse: true
+            uc.noGmChange: true
             uc.noMoneyLost: true
             uc.noHealthLost: true
             uc.noFoodLost: true
     uc.allowCurse:
         description: Allows people to curse :(
+        default: false
+    uc.noGmChange:
+        description: Gamemode is not changed in cursing :(
         default: false
     uc.noMoneyLost:
         description: No money lost in cursing :(

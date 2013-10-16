@@ -1,0 +1,11 @@
+name: Un-Cursory
+version: 2.1
+main: bukkit.spyobird.uncursory.UnCursory
+author: spyobird
+description: Un-Curses the chat making it user friendly! :3 (For Compserv|CST Minecraft Server Only)
+softdepend: [Vault]
+
+permission:
+    uc.allowCurse:
+        description: Allows people to curse :(
+        default: op

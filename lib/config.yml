@@ -1,0 +1,58 @@
+# Add banned curse words here
+# To add more, type *space**space**dash**space*<word>
+curseWords:
+  - hello
+  - pie
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  
+# Check true/false if want to deduct money  
+moneyUsed: true
+
+# Cost for cursing (vault)
+# Do not edit list
+moneyCost:
+  - 10.00
+
+# Check true/false if want to give damage  
+takeDmg: true
+
+# Damage for cursing (half-hearts)
+dmgAmount: 10
+
+# Message when someone curses
+msgCurse: No Cursing Please!!!11!!1one1one! :((((((((((((
+
+# Message when someone curses if moneyUsed is true
+msgMoney: Money deducted for cursing. :3
+
+# Message when someone curses if moneyUsed is true and runs out of money
+msgMoneyNone: LOL! You ran out of MONEY! :P
+
+# Message when someone curses if takeDmg is true
+msgDmg: Damage given for cursing. xD

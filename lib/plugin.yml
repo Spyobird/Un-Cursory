@@ -9,9 +9,9 @@ permission:
     uc.*:
         description: Allow permissions
         childern:
-            uc.allowCurse: true
-            uc.noMoneyLost: true
-            uc.noHealthLost: true
+            uc.allowCurse: op
+            uc.noMoneyLost: op
+            uc.noHealthLost: op
     uc.allowCurse:
         description: Allows people to curse :(
         default: false

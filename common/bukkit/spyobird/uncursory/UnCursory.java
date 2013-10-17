@@ -21,8 +21,6 @@ public class UnCursory extends JavaPlugin implements Listener
 {
     public static float money;
     public static int dmg;
-    public static int food;
-    public static float foodRate;
     
     @SuppressWarnings("deprecation")
     @EventHandler

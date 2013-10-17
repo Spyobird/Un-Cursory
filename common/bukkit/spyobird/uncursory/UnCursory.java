@@ -8,7 +8,6 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,6 +20,8 @@ public class UnCursory extends JavaPlugin implements Listener
 {
     public static float money;
     public static int dmg;
+    public static int food;
+    public static float foodRate;
     
     @SuppressWarnings("deprecation")
     @EventHandler

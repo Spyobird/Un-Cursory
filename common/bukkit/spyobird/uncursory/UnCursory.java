@@ -8,6 +8,9 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -25,47 +28,51 @@ public class UnCursory extends JavaPlugin implements Listener
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event)
     {
+        Player player = (Player) event.getPlayer();
+        FileConfiguration config = (FileConfiguration) getConfig();
         for (String word : event.getMessage().split(" "))
         {
-            if (getConfig().getStringList("curseWords").contains(word.toLowerCase()))
+            if (config.getStringList("curseWords").contains(word.toLowerCase()))
             {
-                if (!event.getPlayer().hasPermission("uc.allowCurse"))
+                if (!player.hasPermission("uc.allowCurse"))
                 {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage(ChatColor.GREEN + getConfig().getString("msgCurse"));
-                    if (getConfig().getBoolean("changeGm") == true)
+                    player.sendMessage(ChatColor.GREEN + config.getString("msgCurse"));
+                    if (config.getBoolean("changeGm") == true)
                     {
-                        event.getPlayer().setGameMode(GameMode.SURVIVAL);
+                        player.setGameMode(GameMode.SURVIVAL);
                     }
-                    if (getConfig().getBoolean("moneyUsed") == true && !event.getPlayer().hasPermission("uc.noMoneyLost"))
+                    if (config.getBoolean("moneyUsed") == true && !player.hasPermission("uc.noMoneyLost"))
                     {
-                        money = (float) getConfig().getFloatList("moneyCost").get(0);
-                        EconomyResponse r = econ.withdrawPlayer(event.getPlayer().getName(), money);
+                        money = (float) config.getFloatList("moneyCost").get(0);
+                        EconomyResponse r = econ.withdrawPlayer(player.getName(), money);
                         if (r.transactionSuccess())
                         {
-                            event.getPlayer().sendMessage(ChatColor.BLUE + getConfig().getString("msgMoney"));
+                            player.sendMessage(ChatColor.BLUE + config.getString("msgMoney"));
                         }
                         else
                         {
-                            event.getPlayer().sendMessage(ChatColor.BLUE + getConfig().getString("msgMoneyNone"));
+                            player.sendMessage(ChatColor.BLUE + config.getString("msgMoneyNone"));
                         }
                     }
-                    if (getConfig().getBoolean("takeDmg") == true && !event.getPlayer().hasPermission("uc.noHealthLost"))
+                    if (config.getBoolean("takeDmg") == true && !player.hasPermission("uc.noHealthLost"))
                     {
-                        dmg = getConfig().getInt("dmgAmount");
-                        event.getPlayer().damage(dmg);
-                        event.getPlayer().sendMessage(ChatColor.RED + getConfig().getString("msgDmg"));
+                        dmg = config.getInt("dmgAmount");
+                        player.damage(dmg);
+                        player.sendMessage(ChatColor.RED + config.getString("msgDmg"));
                     }
-                    if (getConfig().getBoolean("takeFood") == true && !event.getPlayer().hasPermission("uc.noFoodLost"))
+                    if (config.getBoolean("takeFood") == true && !player.hasPermission("uc.noFoodLost"))
                     {
-                        food = getConfig().getInt("foodAmount");
-                        event.getPlayer().setFoodLevel(event.getPlayer().getFoodLevel() - food);
-                        event.getPlayer().sendMessage(ChatColor.RED + getConfig().getString("msgFood"));
+                        food = config.getInt("foodAmount");
+                        int getFoodLevel = player.getFoodLevel();
+                        player.setFoodLevel(getFoodLevel - food);
+                        player.sendMessage(ChatColor.RED + config.getString("msgFood"));
                     }
-                    if (getConfig().getBoolean("addFoodRate") == true && !event.getPlayer().hasPermission("uc.noFoodLost"))
+                    if (config.getBoolean("addFoodRate") == true && !player.hasPermission("uc.noFoodLost"))
                     {
-                        foodRate = (float) getConfig().getFloatList("foodRateAmount").get(0);
-                        event.getPlayer().setExhaustion(event.getPlayer().getExhaustion() + foodRate);
+                        foodRate = (float) config.getFloatList("foodRateAmount").get(0);
+                        float getExhaustion = player.getExhaustion();
+                        player.setExhaustion(getExhaustion + foodRate);
                     }
                 }
             }

@@ -2,47 +2,64 @@
 curseWords:
   - hello
   - pie
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   
-# Check true/false if want to deduct money
+# Check true/false if want to change gamemode to survival  
+changeGm: true
+  
+# Check true/false if want to deduct money  
 moneyUsed: true
 
 # Cost for cursing (vault)
-# Do not edit list
+# Do not add or remove items from the list
 moneyCost:
   - 10.00
 
-# Check true/false if want to give damage
+# Check true/false if want to give damage  
 takeDmg: true
 
 # Damage for cursing (half-hearts)
 dmgAmount: 10
+
+# Check true/false if want to deplete hunger
+takeFood: true
+
+# Hunger for cursing (half-chicken-drumsticks)
+foodAmount: 10
+
+# Check true/false if want to increase hunger depletion rate
+addFoodRate: true
+
+# Increase in hunger depletion rate for cursing
+# Do not add or remove items from the list
+foodRateAmount:
+  - 10
 
 # Message when someone curses
 msgCurse: No Cursing Please!!!11!!1one1one! :((((((((((((
@@ -55,3 +72,6 @@ msgMoneyNone: LOL! You ran out of MONEY! :P
 
 # Message when someone curses if takeDmg is true
 msgDmg: Damage given for cursing. xD
+
+# Message when someone curses if takeFood is true
+msgFood: Hunger depleted for cursing. xD
